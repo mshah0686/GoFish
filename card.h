@@ -48,7 +48,7 @@ public:
 
     bool operator == (const Card& rhs) const;
     bool operator != (const Card& rhs) const;
-
+    ostream& operator << (ostream& out, const Card& c);
 
 
 private:
@@ -59,7 +59,7 @@ private:
 
 };
 
-ostream& operator << (ostream& out, const Card& c);
+
 
 
 

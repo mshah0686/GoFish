@@ -29,6 +29,9 @@ public:
         return myName;
     }
 
+    //Find pairs of cards in hand and book them and remove from hand
+    void findPairsBookCards();
+
     void addCard(Card c);  //adds a card to the hand
     void bookCards(Card c1, Card c2);
 
@@ -46,13 +49,20 @@ public:
 
     //uses some strategy to choose one card from the player's
     //hand so they can say "Do you have a 4?"
-    Card chooseCardFromHand() const;
+    Card chooseCardFromHand();
+
+    //Initializes the player AI
+    void initPlayerAI();
 
     //Does the player have the card c in her hand?
     bool cardInHand(Card c) const;
 
     //Remove the card c from the hand and return it to the caller
     Card removeCardFromHand(Card c);
+
+    //Removes first card in hand with same rank and return removed card to caller
+    //precondition: card with same rank as c is in hand
+    Card removeCardWithSameRankFromHand(Card c);
 
     string showHand() const;
     string showBooks() const;
@@ -75,13 +85,16 @@ public:
     bool sameRankInHand(Card c) const;
 
 
-private:
 
+private:
+    Card indexCard;
     vector <Card> myHand;
     vector <Card> myBook;
-
     string myName;
 
+    //-1 if card not found, else returns index of card
+    int findCardInHand(Card c) const;
+    void incrementIndexCard();
 };
 
 

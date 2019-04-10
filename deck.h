@@ -21,10 +21,9 @@
 
 class Deck
 {
-    static const int SIZE = 52;
 
 public:
-
+    static const int SIZE = 52;
 
     Deck();           // pristine, sorted deck
 

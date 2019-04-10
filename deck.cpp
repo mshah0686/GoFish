@@ -33,7 +33,9 @@ void Deck::shuffle() {
 
 Card Deck::dealCard() {
     if(myIndex < 52) {
-        return myCards[myIndex++];
+        int cpy = myIndex;
+        myIndex++;
+        return myCards[cpy];
     }
     cout << "ERROR NO MORE CARDS" << endl;
     exit(-1);

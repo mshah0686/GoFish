@@ -75,7 +75,7 @@ bool Card::sameSuitAs(const Card &c) const {
     return mySuit == c.mySuit;
 }
 
-ostream& Card::operator<<(ostream &out, const Card &c) {
-    out << c.toString() << endl;
+ostream& Card::operator<<(ostream &out) {
+    out << this->toString() << endl;
     return out;
 }

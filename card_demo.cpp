@@ -1,8 +1,5 @@
 // FILE: card_demo.cpp
 // This is a small demonstration program showing how the Card and Deck classes are used.
-
-//Names: Kenneth Mitra and Malav Shah
-
 #include <iostream>    // Provides cout and cin
 #include <cstdlib>     // Provides EXIT_SUCCESS
 #include <fstream>
@@ -23,7 +20,7 @@ int main() {
 
     //Open Log File for writing
     ofstream log;
-    log.open("gofish_results.txt");
+    log.open("log.txt");
     if(!log.is_open()){
         cout << "Error opening log file" << endl;
         exit(-1);
@@ -68,7 +65,7 @@ int main() {
     int turnNum = 0;
 
     //Loop while not all pairs of cards have been formed
-    while (p1.getBookSize() + p2.getBookSize() < Deck::SIZE / 2){
+    while (p1.getBookSize() + p2.getBookSize() < d.SIZE / 2){
 
         log << "--------------------------TURN " << turnNum << "------------------------------" << endl;
 

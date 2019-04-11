@@ -29,6 +29,8 @@ void Deck::shuffle() {
         //generate two random indices to swap
         int firstIndex = (rand() % size()) + myIndex;
         int secondIndex = (rand() % size()) + myIndex;
+
+        //Swap those indicies
         Card temp = myCards[firstIndex];
         myCards[firstIndex] = myCards[secondIndex];
         myCards[secondIndex] = temp;
@@ -38,18 +40,19 @@ void Deck::shuffle() {
 Card Deck::dealCard() {
     if(myIndex < 52) {
         int cpy = myIndex;
-        myIndex++;
-        return myCards[cpy];
+        myIndex++; //Increment top of the deck
+        return myCards[cpy]; //return card that was on top of the deck
     }
     cout << "ERROR NO MORE CARDS" << endl;
     exit(-1);
 }
 
 int Deck::size() const {
-    return SIZE - myIndex;
+    return SIZE - myIndex; //return number of cards under the top of the deck
 }
 
 string Deck::showDeck() {
+    //return string representation of deck
     string ret;
     for(int i = myIndex; i < SIZE; i++){
         ret += myCards[i].toString() + " ";

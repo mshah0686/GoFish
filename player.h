@@ -29,11 +29,11 @@ public:
         return myName;
     }
 
-    //Find pairs of cards in hand and book them and remove from hand
-    void findPairsBookCards();
+    //Books all pairs in hand, returns true if it booked pairs, false otherwise
+    bool findPairsBookCards();
 
     void addCard(Card c);  //adds a card to the hand
-    void bookCards(Card c1, Card c2);
+    void bookCards(Card c1, Card c2); //Book a pair of cards
 
     //OPTIONAL
     // comment out if you decide to not use it

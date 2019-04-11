@@ -14,7 +14,9 @@ void Player::addCard(Card c) {
 }
 
 void Player::incrementIndexCard() {
-    indexCard = myHand[(findCardInHand(indexCard) + 1) % myHand.size()];
+    if(myHand.size() > 0) {
+        indexCard = myHand[(findCardInHand(indexCard) + 1) % myHand.size()];
+    }
 }
 
 void Player::bookCards(Card c1, Card c2) {
@@ -31,10 +33,10 @@ bool Player::checkHandForPair(Card &c1, Card &c2) {
             if(myHand[i].getRank() == myHand[j].getRank()) {
                 c1 = myHand[i];
                 c2 = myHand[j];
-                cout << myHand[i].toString() << " == " << myHand[j].toString() << endl;
+                //cout << myHand[i].toString() << " == " << myHand[j].toString() << endl;
                 return true;
             }else{
-                cout << myHand[i].toString() << " != " << myHand[j].toString() << endl;
+                //cout << myHand[i].toString() << " != " << myHand[j].toString() << endl;
             }
         }
     }
@@ -55,10 +57,12 @@ Card Player::removeCardFromHand(Card c) {
 }
 
 Card Player::removeCardWithSameRankFromHand(Card c) {
-    for(vector<Card>::iterator i = myHand.begin(); i != myHand.end(); i++) {
+    for(auto i = myHand.begin(); i != myHand.end(); i++) {
         if(i->getRank() == c.getRank()) {
+            //cout << "i card/rank " << i->toString() + " / " << i->getRank() << " | c card/rank " + c.toString() + " / " << c.getRank() << endl;
+            Card retCard = *i;
             myHand.erase(i);
-            return c;
+            return retCard;
         }
     }
     cout << "Major ERROR in removeCardWithSameRankFromHand()" << endl;
@@ -80,8 +84,6 @@ void Player::initPlayerAI() {
 }
 
 Card Player::chooseCardFromHand() {
-    //find index of indexCard
-    int index = findCardInHand(indexCard);
     Card cpy = indexCard;
     incrementIndexCard();
     return cpy;
@@ -130,21 +132,17 @@ int Player::getBookSize() const {
 int Player::getHandSize() const {
     return myHand.size();
 }
-void Player::findPairsBookCards() {
+bool Player::findPairsBookCards() {
     Card c1;
     Card c2;
-    cout << "booking for " << getName() << endl;
-    cout << "hand before " << showHand() << endl;
-    cout << "book before " << showBooks() << endl;
+    bool foundPair = false;
+
+    //While pairs exist in hand, book the pairs
     while (checkHandForPair(c1,c2)){
-
-        cout << "booking..." << endl;
         bookCards(c1, c2);
-        cout << "book after " << showBooks() << endl;
-        removeCardFromHand(c1); //TODO fails here check modulo in incIndexCard
-        cout << "here" << endl;
-        removeCardFromHand(c2); // TODO <------
-        cout << "hand after " << showHand() << endl;
-
+        removeCardFromHand(c1);
+        removeCardFromHand(c2);
+        foundPair = true;
     }
+    return foundPair;
 }

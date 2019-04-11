@@ -45,3 +45,10 @@ int Deck::size() const {
     return SIZE - myIndex;
 }
 
+string Deck::showDeck() {
+    string ret;
+    for(int i = myIndex; i < SIZE; i++){
+        ret += myCards[i].toString() + " ";
+    }
+    return ret;
+}

@@ -32,20 +32,11 @@ public:
     //Books all pairs in hand, returns true if it booked pairs, false otherwise
     bool findPairsBookCards();
 
-    void addCard(Card c);  //adds a card to the hand
-    void bookCards(Card c1, Card c2); //Book a pair of cards
+    //adds a card to the hand
+    void addCard(Card c);
 
-    //OPTIONAL
-    // comment out if you decide to not use it
-    //this function will check a players hand for a pair.
-    //If a pair is found, it returns true and populates the two variables with the cards tha make the pair.
-
-    //bool checkHandForBook(Card &c1, Card &c2);
-
-    //OPTIONAL
-    // comment out if you decide to not use it
-    //Does the player have a card with the same rank as c in her hand?
-    //bool rankInHand(Card c) const;
+    //books cards specified in c1 and c2 from hand
+    void bookCards(Card c1, Card c2);
 
     //uses some strategy to choose one card from the player's
     //hand so they can say "Do you have a 4?"
@@ -64,24 +55,24 @@ public:
     //precondition: card with same rank as c is in hand
     Card removeCardWithSameRankFromHand(Card c);
 
+    //returns string of hand
     string showHand() const;
+    //returns string of books
     string showBooks() const;
 
+    //returns number of cards in hand
     int getHandSize() const;
+    //returns number of pairs
     int getBookSize() const;
 
-    //OPTIONAL
-    // comment out if you decide to not use it
-    //this function will check a players hand for a pair.
-    //If a pair is found, it returns true and populates the two variables with the cards tha make the pair.
-
+    //checks if a pair of cards is in the hand
+    //returns true/false
     bool checkHandForPair(Card &c1, Card &c2);
 
     //OPTIONAL
     // comment out if you decide to not use it
     //Does the player have a card with the same rank as c in her hand?
     //e.g. will return true if the player has a 7d and the parameter is 7c
-
     bool sameRankInHand(Card c) const;
 
 
@@ -94,6 +85,7 @@ private:
 
     //-1 if card not found, else returns index of card
     int findCardInHand(Card c) const;
+    //change card to ask for next
     void incrementIndexCard();
 };
 

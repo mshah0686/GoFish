@@ -20,7 +20,7 @@ int main() {
 
     //Open Log File for writing
     ofstream log;
-    log.open("log.txt");
+    log.open("gofish_results.txt");
     if(!log.is_open()){
         cout << "Error opening log file" << endl;
         exit(-1);

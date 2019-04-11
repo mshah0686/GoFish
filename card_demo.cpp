@@ -59,58 +59,83 @@ int main() {
         log << "Booked " << p2.getName() << "'s cards" << endl;
     }
 
-    int playerID = 0;
-    Player &pA = p1;
-    Player &pB = p2;
+    //Setup Loop variables
+    Player &pA = p1; //Reference to a player
+    Player &pB = p2; //Reference to a player
     int turnNum = 0;
 
-    //Loop while there are less than d.SIZE/2 number of pairs of cards
+    //Loop while not all pairs of cards have been formed
     while (p1.getBookSize() + p2.getBookSize() < d.SIZE / 2){
+
         log << "--------------------------TURN " << turnNum << "------------------------------" << endl;
-        Player temp = p1;
+
+        //Swap player A and player B (player A is the one currently taking a turn)
+        Player temp = p1; //temp Player to swap p1 and p2
         pA = p2;
         pB = temp;
         log << pA.getName() <<"'s turn" << endl;
 
+        //Print each player's hand and books to log before each turn
         log << pA.getName() << "'s Hand: " << pA.showHand() << endl << pB.getName() << "'s Hand: " << pB.showHand() << endl;
         log << pA.getName() << "'s # of books: " << pA.getBookSize() << " " << pB.getName() << "'s # of books: " << pB.getBookSize() << endl;
+
+        //Book player A's cards if there are any pairs
         if(pA.findPairsBookCards()){
             log << "Booked " << pA.getName() << "'s cards" << endl;
         }
-        if(pA.getHandSize() == 0 && d.size() > 0){ //Deal Card
-            Card dealtCard = d.dealCard();
-            pA.addCard(dealtCard);
+
+        //Player A draws a card if Player A has no cards in hand
+        if(pA.getHandSize() == 0 && d.size() > 0){
+            Card dealtCard = d.dealCard(); // Deal card from deck
+            pA.addCard(dealtCard); // Add dealt card to hand
             log << pA.getName() << " draws " << dealtCard.toString() << endl;
-        } else {
+        } else { //Player A's hand is not empty
+            //Choose a card to ask for
             Card choice = pA.chooseCardFromHand();
             log << pA.getName() << " asks " << pB.getName() << " for " << choice.rankString(choice.getRank()) << endl;
-            while (pB.sameRankInHand(choice) && (pB.getHandSize() > 0)) { //Player 1 keeps requesting cards until fail or player 2 runs out of cards
-                Card removedCard = pB.removeCardWithSameRankFromHand(choice);
-                pA.addCard(removedCard);
+
+            /*If Player B has a card with the same rank as the card Player A asked for, then give it to Player A
+             * Player A keeps asking for cards until player A makes a wrong guess or player B runs out of cards*/
+            while (pB.sameRankInHand(choice) && (pB.getHandSize() > 0)) {
+
+                Card removedCard = pB.removeCardWithSameRankFromHand(choice); //player B removes the card to give player A from his hand
+                pA.addCard(removedCard); //player A adds the card player B gave to his/her deck
                 log << pB.getName() << " gives " << pA.getName() << " " << removedCard.toString() << endl;
+
+                //Book any pairs Player A has in his/her hand
                 if(pA.findPairsBookCards()){
                     log << "Booked " << pA.getName() << "'s cards" << endl;
                 }
+
+                //Player A chooses another card to request
                 choice = pA.chooseCardFromHand();
                 if(pB.getHandSize() > 0){
                     log << pA.getName() << " asks " << pB.getName() << " for " << choice.rankString(choice.getRank()) << endl;
                 }
             }
-            //Player 1 draws a card if there was a failed ask
+
+            //Player 1 draws a card if there was a failed ask (if loop terminated not due to player B running out of cards)
             if (pB.getHandSize() > 0) {
                 log << pB.getName() << " says Go Fish!" << endl;
-                Card dealtCard = d.dealCard();
-                pA.addCard(dealtCard);
+                Card dealtCard = d.dealCard(); //Deal card from deck
+                pA.addCard(dealtCard); //Add dealt card to player A's hand
                 log << pA.getName() << " draws " << dealtCard.toString() << endl;
             }
+
+            //Book any pairs of cards that Player A might have
             if(pA.findPairsBookCards()) {
                 log << "Booked " << pA.getName() << "'s cards" << endl;
             }
         }
-        playerID = ((playerID + 1) % 2);
+
         turnNum++;
     }
+
+    //Game Over
+    log << endl;
     log << "=================Game Over: ";
+
+    //Determine winner by comparing book size
     if(p1.getBookSize() > p2.getBookSize()){
         log << p1.getName() << " wins with a score of " << p1.getBookSize() << " to " << p2.getBookSize();
     } else {
@@ -118,7 +143,8 @@ int main() {
     }
      log << "=================" << endl;
 
-    log.close();
+    log.close(); //Close log file
+
     return EXIT_SUCCESS;
 }
 

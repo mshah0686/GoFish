@@ -1,3 +1,4 @@
+#include <time.h>
 #include "deck.h"
 
 Deck::Deck() {

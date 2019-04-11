@@ -20,8 +20,6 @@ void Player::incrementIndexCard() {
 }
 
 void Player::bookCards(Card c1, Card c2) {
-    //cout << "In book..." << endl;
-    //cout << "c1: " << c1.toString() << " c2: " << c2.toString() << endl;
     myBook.push_back(c1);
     myBook.push_back(c2);
 }
@@ -33,10 +31,7 @@ bool Player::checkHandForPair(Card &c1, Card &c2) {
             if(myHand[i].getRank() == myHand[j].getRank()) {
                 c1 = myHand[i];
                 c2 = myHand[j];
-                //cout << myHand[i].toString() << " == " << myHand[j].toString() << endl;
                 return true;
-            }else{
-                //cout << myHand[i].toString() << " != " << myHand[j].toString() << endl;
             }
         }
     }
@@ -59,8 +54,10 @@ Card Player::removeCardFromHand(Card c) {
 Card Player::removeCardWithSameRankFromHand(Card c) {
     for(auto i = myHand.begin(); i != myHand.end(); i++) {
         if(i->getRank() == c.getRank()) {
-            //cout << "i card/rank " << i->toString() + " / " << i->getRank() << " | c card/rank " + c.toString() + " / " << c.getRank() << endl;
             Card retCard = *i;
+            if(retCard == indexCard){
+                incrementIndexCard();
+            }
             myHand.erase(i);
             return retCard;
         }

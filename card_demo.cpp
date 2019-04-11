@@ -87,10 +87,10 @@ int main() {
             while (pB.sameRankInHand(choice) && (pB.getHandSize() > 0)) { //Player 1 keeps requesting cards until fail or player 2 runs out of cards
                 Card removedCard = pB.removeCardWithSameRankFromHand(choice);
                 pA.addCard(removedCard);
+                log << pB.getName() << " gives " << pA.getName() << " " << removedCard.toString() << endl;
                 if(pA.findPairsBookCards()){
                     log << "Booked " << pA.getName() << "'s cards" << endl;
                 }
-                log << pB.getName() << " gives " << pA.getName() << " " << removedCard.toString() << endl;
                 choice = pA.chooseCardFromHand();
                 if(pB.getHandSize() > 0){
                     log << pA.getName() << " asks " << pB.getName() << " for " << choice.rankString(choice.getRank()) << endl;
@@ -103,18 +103,20 @@ int main() {
                 pA.addCard(dealtCard);
                 log << pA.getName() << " draws " << dealtCard.toString() << endl;
             }
-            pA.findPairsBookCards();
+            if(pA.findPairsBookCards()) {
+                log << "Booked " << pA.getName() << "'s cards" << endl;
+            }
         }
         playerID = ((playerID + 1) % 2);
         turnNum++;
     }
-    log << "Game Over: ";
+    log << "=================Game Over: ";
     if(p1.getBookSize() > p2.getBookSize()){
-        log << p1.getName();
+        log << p1.getName() << " wins with a score of " << p1.getBookSize() << " to " << p2.getBookSize();
     } else {
-        log << p2.getName();
+        log << p2.getName() << " wins with a score of " << p2.getBookSize() << " to " << p1.getBookSize();
     }
-    log << " wins!!!" << endl;
+     log << "=================" << endl;
 
     log.close();
     return EXIT_SUCCESS;

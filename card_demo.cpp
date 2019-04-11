@@ -47,14 +47,24 @@ int main() {
     log << p1.getName() <<" has : " << p1.showHand() << endl;
     log << p2.getName() <<" has : " << p2.showHand() << endl;
 
+    //Set up player AI
     p1.initPlayerAI();
     p2.initPlayerAI();
 
-    log << "Starting Game..." << endl;
+    //Book pairs of cards that occured right after dealing
+    if(p1.findPairsBookCards()){
+        log << "Booked " << p1.getName() << "'s cards" << endl;
+    }
+    if(p2.findPairsBookCards()){
+        log << "Booked " << p2.getName() << "'s cards" << endl;
+    }
+
     int playerID = 0;
     Player &pA = p1;
     Player &pB = p2;
     int turnNum = 0;
+
+    //Loop while there are less than d.SIZE/2 number of pairs of cards
     while (p1.getBookSize() + p2.getBookSize() < d.SIZE / 2){
         log << "--------------------------TURN " << turnNum << "------------------------------" << endl;
         Player temp = p1;

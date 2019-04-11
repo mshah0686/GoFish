@@ -15,6 +15,7 @@ Deck::Deck() {
         myCards[cardNum] = Card(i, Card::diamonds);
     }
     myIndex = 0;
+    srand(time(NULL));
 }
 
 void Deck::shuffle() {

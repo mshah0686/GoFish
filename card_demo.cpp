@@ -116,6 +116,9 @@ int main() {
     } else {
         log << p2.getName() << " wins with a score of " << p2.getBookSize() << " to " << p1.getBookSize();
     }
+    log << "---------------------------" << endl;
+    log << p1.getName() << " books: " << p1.showBooks() << endl;
+    log << p2.getName() << " books: " << p1.showBooks() << endl;
      log << "=================" << endl;
 
     log.close();

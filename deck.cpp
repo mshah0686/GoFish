@@ -1,3 +1,4 @@
+//Names: Kenneth Mitra and Malav Shah
 #include <time.h>
 #include "deck.h"
 

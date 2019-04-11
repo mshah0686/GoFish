@@ -12,7 +12,7 @@
 // returns each card in the deck after shuffling.
 //
 // Calling shuffle again replenishes the deck with 52 cards.
-
+//Names: Kenneth Mitra and Malav Shah
 #ifndef _DECK_H
 #define _DECK_H
 

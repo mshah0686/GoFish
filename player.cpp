@@ -1,6 +1,4 @@
-//
-// Created by Malav Shah on 2019-04-09.
-//
+//Names: Kenneth Mitra and Malav Shah
 
 #include "player.h"
 using namespace std;
@@ -39,7 +37,7 @@ bool Player::checkHandForPair(Card &c1, Card &c2) {
 }
 
 Card Player::removeCardFromHand(Card c) {
-    for(vector<Card>::iterator i = myHand.begin(); i != myHand.end(); i++) {
+    for(auto i = myHand.begin(); i != myHand.end(); i++) {
         if(*i == c) {
             myHand.erase(i);
             if(c == indexCard){

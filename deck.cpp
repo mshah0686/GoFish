@@ -3,6 +3,8 @@
 
 Deck::Deck() {
     int cardNum = 0;
+
+    //Generate Deck in order of spades, hearts, diamonds, clubs
     for(int i = 1; i < 14; i++, cardNum++) {
         myCards[cardNum] = Card(i, Card::spades);
     }
@@ -10,10 +12,10 @@ Deck::Deck() {
         myCards[cardNum] = Card(i, Card::hearts);
     }
     for(int i = 1; i < 14; i++, cardNum++) {
-        myCards[cardNum] = Card(i, Card::clubs);
+        myCards[cardNum] = Card(i, Card::diamonds);
     }
     for(int i = 1; i < 14; i++, cardNum++) {
-        myCards[cardNum] = Card(i, Card::diamonds);
+        myCards[cardNum] = Card(i, Card::clubs);
     }
     myIndex = 0;
     srand(time(NULL));

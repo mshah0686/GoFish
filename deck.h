@@ -25,7 +25,7 @@ class Deck
 public:
     static const int SIZE = 52;
 
-    Deck();           // pristine, sorted deck
+    Deck();           // Create a pristine, sorted Deck
 
     void shuffle();   // shuffle the deck, all 52 cards present
     Card dealCard();   // get a card, after 52 are dealt, fail

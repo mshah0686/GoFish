@@ -31,12 +31,11 @@ class Card
 {
 public:
 
+    enum Suit {spades, hearts, diamonds, clubs}; //Possible suits a card can have
 
-    enum Suit {spades, hearts, diamonds, clubs};
+    Card();          // default constructor, creates an ace of spades
 
-    Card();          // default, ace of spades
-
-    Card(int rank, Suit s);
+    Card(int rank, Suit s); // creates a card with specified rank and suit
 
     string toString()              const;  // return string version e.g. Ac 4h Js
     bool sameSuitAs(const Card& c) const;  // true if suit same as c
@@ -46,16 +45,15 @@ public:
     string rankString(int r)       const;  // return "A", "2", ..."Q"
 
 
-    bool operator == (const Card& rhs) const;
-    bool operator != (const Card& rhs) const;
-    ostream& operator << (ostream& out);
+    bool operator == (const Card& rhs) const; // return true if a card has the same suit and rank
+    bool operator != (const Card& rhs) const; // return true if a card doesnt have the same suit and rank
+    ostream& operator << (ostream& out);      // write the text representation of a card out to the stream
 
 
 private:
 
-    int myRank;
-    Suit mySuit;
-
+    int myRank; //Card's rank
+    Suit mySuit; //Card's suit
 
 };
 
